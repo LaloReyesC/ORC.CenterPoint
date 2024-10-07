@@ -1,0 +1,11 @@
+﻿global using Mapster;
+global using MediatR;
+global using Microsoft.EntityFrameworkCore;
+global using ORC.CenterPoint.API.Application.Features.TableOperations.Queries;
+global using ORC.CenterPoint.API.Infraestructure;
+global using ORC.CenterPoint.API.Models;
+global using ORC.CenterPoint.API.Models.Dtos;
+global using ORC.CenterPoint.API.Models.Entities;
+global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Reflection;
