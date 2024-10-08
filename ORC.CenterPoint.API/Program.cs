@@ -1,5 +1,3 @@
-using ORC.CenterPoint.API.Application;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();

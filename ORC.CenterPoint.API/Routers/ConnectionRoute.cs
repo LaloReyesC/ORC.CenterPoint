@@ -5,8 +5,7 @@ public class ConnectionRoute : EndpointGroupBase
     public override void Map(WebApplication app)
     {
         app.MapGroup(this)
-            .MapGet("/Test", TestConnection)
-            .WithName("TestConnection");
+            .MapGet(TestConnection);
     }
 
     #region Private members
