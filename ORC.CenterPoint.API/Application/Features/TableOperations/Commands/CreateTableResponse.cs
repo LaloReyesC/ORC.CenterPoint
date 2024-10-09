@@ -8,5 +8,7 @@ public class CreateTableResponse
     public required string Message { get; set; }
 
     public int Id { get; set; }
+
+    public static CreateTableResponse New => new() { Message = string.Empty };
     #endregion
 }

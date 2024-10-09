@@ -9,6 +9,14 @@ public class CreateTableHandler(ApplicationDbContext dbContext)
 
     public async Task<CreateTableResponse> Handle(CreateTableRequest request, CancellationToken cancellationToken)
     {
+        bool existTable = await _dbContext.Tables.AsNoTracking()
+            .AnyAsync(table => table.Name == request.Name && table.RoomName == request.RoomName, cancellationToken);
+
+        if (existTable)
+        {
+            throw new ApplicationException($"Ya existe una mesa con el nombre '{request.Name}' en el área '{request.RoomName}'");
+        }
+
         RestaurantTable table = request;
 
         await _dbContext.Tables.AddAsync(table, cancellationToken);
