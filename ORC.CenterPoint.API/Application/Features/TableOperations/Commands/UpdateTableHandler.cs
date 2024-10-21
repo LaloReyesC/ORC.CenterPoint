@@ -11,15 +11,19 @@ public class UpdateTableHandler(ApplicationDbContext dbContext)
     {
         UpdateTableResponse response = UpdateTableResponse.New;
 
-        RestaurantTable table = await _dbContext.Tables.FindAsync(request.Id, cancellationToken) ??
-            throw new NotFoundException("Mesa seleccionada inválida, no encontrada en el sistema");
+        RestaurantTable? table = await _dbContext.Tables.FindAsync(request.Id, cancellationToken);
+
+        if (table is null)
+        {
+            return UpdateTableResponse.NotFound;
+        }
 
         bool existTable = await _dbContext.Tables.AsNoTracking()
             .AnyAsync(table => table.Name == request.Name && table.RoomName == request.RoomName && table.Id != request.Id, cancellationToken);
 
         if (existTable)
         {
-            throw new ApplicationException($"Ya existe una mesa con el nombre '{request.Name}' en el área '{request.RoomName}'");
+            return UpdateTableResponse.AlreadyExists(request);
         }
 
         table.AllowedDinersNumber = request.AllowedDinersNumber;

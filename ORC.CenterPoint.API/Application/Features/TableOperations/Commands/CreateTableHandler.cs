@@ -14,10 +14,10 @@ public class CreateTableHandler(ApplicationDbContext dbContext)
 
         if (existTable)
         {
-            throw new ApplicationException($"Ya existe una mesa con el nombre '{request.Name}' en el área '{request.RoomName}'");
+            return CreateTableResponse.TableAlreadyExists(request);
         }
 
-        RestaurantTable table = request;
+        RestaurantTable table = request.Adapt<RestaurantTable>();
 
         await _dbContext.Tables.AddAsync(table, cancellationToken);
 

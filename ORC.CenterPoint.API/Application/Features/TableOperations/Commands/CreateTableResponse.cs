@@ -11,4 +11,11 @@ public class CreateTableResponse
 
     public static CreateTableResponse New => new() { Message = string.Empty };
     #endregion
+
+    #region Private members
+    public static CreateTableResponse TableAlreadyExists(CreateTableRequest request) => new()
+    {
+        Message = $"Ya existe una mesa con el nombre '{request.Name}' en el área '{request.RoomName}'",
+    };
+    #endregion
 }

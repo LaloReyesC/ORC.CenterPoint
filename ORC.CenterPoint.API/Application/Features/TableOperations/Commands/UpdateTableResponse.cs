@@ -13,5 +13,17 @@ public class UpdateTableResponse
     {
         Message = string.Empty
     };
+
+    public static UpdateTableResponse NotFound => new()
+    {
+        Message = "Mesa seleccionada inválida, no encontrada en el sistema"
+    };
+    #endregion
+
+    #region Private members
+    public static UpdateTableResponse AlreadyExists(UpdateTableRequest request) => new()
+    {
+        Message = $"Ya existe una mesa con el nombre '{request.Name}' en el área '{request.RoomName}'"
+    };
     #endregion
 }

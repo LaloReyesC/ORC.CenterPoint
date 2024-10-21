@@ -24,14 +24,4 @@ public class RestaurantTable
     [Required]
     public DateTime RegistrationDate { get; set; } = DateTime.Now;
     #endregion
-
-    #region Operators
-    public static implicit operator RestaurantTable(CreateTableRequest request) => new()
-    {
-        Name = request.Name,
-        RoomName = request.RoomName,
-        AllowedDinersNumber = request.AllowedDinersNumber,
-        RegistrationDate = DateTime.Now
-    };
-    #endregion
 }

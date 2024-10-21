@@ -1,11 +1,8 @@
 ﻿namespace ORC.CenterPoint.API.Routers;
 
-public class TableRoute : EndpointGroupBase
+public class TableRoute
+    : EndpointGroupBase
 {
-    #region Fields
-    private readonly Type[] _handledExceptions = [typeof(NotFoundException), typeof(ApplicationException)];
-    #endregion
-
     public override void Map(WebApplication app)
     {
         app.MapGroup(this)
@@ -20,7 +17,9 @@ public class TableRoute : EndpointGroupBase
     {
         TableGetAllResponse response = await mediator.Send(new TableGetAllRequest());
 
-        return Results.Ok(response);
+        bool existsTables = response.Tables.Count > 0;
+
+        return existsTables ? Results.Ok(response) : Results.NotFound(response);
     }
 
     public async Task<IResult> Find(IMediator mediator, int id)
@@ -33,52 +32,31 @@ public class TableRoute : EndpointGroupBase
 
     public async Task<IResult> Post(IMediator mediator, CreateTableRequest request)
     {
-        CreateTableResponse response = CreateTableResponse.New;
+        CreateTableResponse response = await mediator.Send(request);
 
-        try
-        {
-            response = await mediator.Send(request);
-
-            return Results.CreatedAtRoute("Find", new { id = response.Id }, response);
-        }
-        catch (Exception ex)
-        {
-            bool isCustomException = _handledExceptions.Contains(ex.GetType());
-
-            response.Message = isCustomException ? ex.Message : "Ocurrió un error desconocido al actualizar la mesa";
-
-            return Results.BadRequest(response);
-        }
+        return response.Created ?
+            Results.CreatedAtRoute("Find", new { id = response.Id }, response) :
+            Results.BadRequest(response);
     }
 
     public async Task<IResult> Put(IMediator mediator, int id, UpdateTableRequest request)
     {
-        UpdateTableResponse response = UpdateTableResponse.New;
+        request.Id = id;
 
-        try
-        {
-            if (id == default)
-            {
-                throw new ApplicationException("El identificador especificado es inválido");
-            }
+        UpdateTableResponse response = await mediator.Send(request);
 
-            request.Id = id;
-            response = await mediator.Send(request);
-
-            return Results.Ok(response);
-        }
-        catch (Exception ex)
-        {
-            bool isCustomException = _handledExceptions.Contains(ex.GetType());
-
-            response.Message = isCustomException ? ex.Message : "Ocurrió un error desconocido al actualizar la mesa";
-
-            return Results.BadRequest(response);
-        }
+        return response.Updated ?
+            Results.Ok(response) :
+            Results.BadRequest(response);
     }
 
-    public Task<IResult> Delete(IMediator mediator, int id)
+    public async Task<IResult> Delete(IMediator mediator, int id)
     {
-        throw new NotImplementedException("Not implemented endpoint yet");
+        DeleteTableRequest request = new(id);
+        DeleteTableResponse response = await mediator.Send(request);
+
+        return response.Deleted ?
+            Results.NoContent() :
+            Results.BadRequest(response);
     }
 }
