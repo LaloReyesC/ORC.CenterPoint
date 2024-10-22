@@ -5,8 +5,6 @@ public class TableRoute
 {
     public override void Map(WebApplication app)
     {
-        throw new NotImplementedException("Debes implementar binding para soportar el objeto desde queryString en el método de Get");
-
         app.MapGroup(this)
             .MapGet(Get)
             .MapGet(Find, "{id}")
@@ -15,10 +13,8 @@ public class TableRoute
             .MapDelete(Delete, "{id}");
     }
 
-    public async Task<IResult> Get(IMediator mediator, TableGetAllRequest request)
+    public async Task<IResult> Get(IMediator mediator, [AsParameters] TableGetAllRequest request)
     {
-        throw new NotImplementedException("Debes implementar binding para soportar el objeto desde queryString");
-
         TableGetAllResponse response = await mediator.Send(request);
 
         bool existsTables = response.Tables.Count > 0;
