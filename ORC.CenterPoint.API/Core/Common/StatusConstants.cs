@@ -12,11 +12,11 @@ public class StatusConstants
     #endregion
 
     #region Properties
-    public static Status Active => new() { Id = ActiveId, Name = "Activo" };
-    public static Status Disabled => new() { Id = DisabledId, Name = "Deshabilitado" };
-    public static Status Leave => new() { Id = LeaveId, Name = "Baja" };
-    public static Status Rejoin => new() { Id = RejoinId, Name = "Reincorporado" };
-    public static Status Vacations => new() { Id = VacationsId, Name = "De vacaciones" };
-    public static Status Deleted => new() { Id = DeletedId, Name = "Eliminado" };
+    public static Status Active => new() { Id = ActiveId, Name = "Activo", RegistrationDate = DateTime.Now };
+    public static Status Disabled => new() { Id = DisabledId, Name = "Deshabilitado", RegistrationDate = DateTime.Now };
+    public static Status Leave => new() { Id = LeaveId, Name = "Baja", RegistrationDate = DateTime.Now };
+    public static Status Rejoin => new() { Id = RejoinId, Name = "Reincorporado", RegistrationDate = DateTime.Now };
+    public static Status Vacations => new() { Id = VacationsId, Name = "De vacaciones", RegistrationDate = DateTime.Now };
+    public static Status Deleted => new() { Id = DeletedId, Name = "Eliminado", RegistrationDate = DateTime.Now };
     #endregion
 }

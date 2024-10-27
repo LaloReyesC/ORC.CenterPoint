@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace ORC.CenterPoint.API.Migrations
 {
     /// <inheritdoc />
@@ -44,6 +46,19 @@ namespace ORC.CenterPoint.API.Migrations
                         column: x => x.StatusId,
                         principalTable: "Status",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Status",
+                columns: new[] { "Id", "Name", "RegistrationDate" },
+                values: new object[,]
+                {
+                    { (short)1, "Activo", new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7041) },
+                    { (short)2, "Deshabilitado", new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7053) },
+                    { (short)3, "Baja", new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7055) },
+                    { (short)4, "Reincorporado", new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7056) },
+                    { (short)5, "De vacaciones", new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7057) },
+                    { (short)9999, "Eliminado", new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7058) }
                 });
 
             migrationBuilder.CreateIndex(

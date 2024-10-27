@@ -12,7 +12,7 @@ using ORC.CenterPoint.API.Application;
 namespace ORC.CenterPoint.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241027042259_EmployeeAndStatusNewTables")]
+    [Migration("20241027073533_EmployeeAndStatusNewTables")]
     partial class EmployeeAndStatusNewTables
     {
         /// <inheritdoc />
@@ -118,6 +118,44 @@ namespace ORC.CenterPoint.API.Migrations
                         .HasName("PK_Status_Id");
 
                     b.ToTable("Status", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (short)1,
+                            Name = "Activo",
+                            RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7041)
+                        },
+                        new
+                        {
+                            Id = (short)2,
+                            Name = "Deshabilitado",
+                            RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7053)
+                        },
+                        new
+                        {
+                            Id = (short)3,
+                            Name = "Baja",
+                            RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7055)
+                        },
+                        new
+                        {
+                            Id = (short)4,
+                            Name = "Reincorporado",
+                            RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7056)
+                        },
+                        new
+                        {
+                            Id = (short)5,
+                            Name = "De vacaciones",
+                            RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7057)
+                        },
+                        new
+                        {
+                            Id = (short)9999,
+                            Name = "Eliminado",
+                            RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7058)
+                        });
                 });
 
             modelBuilder.Entity("ORC.CenterPoint.API.Models.Entities.Employee", b =>
