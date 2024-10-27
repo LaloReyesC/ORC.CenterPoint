@@ -7,7 +7,7 @@ public class EmployeeBuilder
     {
         builder
             .ToTable("Employee")
-            .HasKey(x => x.Id)
+            .HasKey(p => p.Id)
             .HasName("PK_Employee_Id");
 
         builder
@@ -15,11 +15,12 @@ public class EmployeeBuilder
             .UseIdentityColumn();
 
         builder
-            .HasOne(x => x.Status)
+            .HasOne(p => p.Status)
             .WithMany(p => p.Employees)
             .HasForeignKey(p => p.StatusId)
             .HasConstraintName("FK_Employee_StatusId")
-            .IsRequired();
+            .IsRequired()
+            .OnDelete(DeleteBehavior.ClientNoAction);
 
         builder
             .Property(p => p.Name)

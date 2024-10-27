@@ -17,7 +17,8 @@ public class StatusBuilder
 
         builder
             .HasMany(p => p.Employees)
-            .WithOne(p => p.Status);
+            .WithOne(p => p.Status)
+            .OnDelete(DeleteBehavior.ClientNoAction);
 
         builder
             .Property(p => p.Name)

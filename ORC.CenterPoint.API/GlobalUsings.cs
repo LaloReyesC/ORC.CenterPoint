@@ -4,6 +4,7 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using ORC.CenterPoint.API.Application;
+global using ORC.CenterPoint.API.Application.Configurations;
 global using ORC.CenterPoint.API.Application.Features.TableOperations.Commands;
 global using ORC.CenterPoint.API.Application.Features.TableOperations.Queries;
 global using ORC.CenterPoint.API.Infraestructure;

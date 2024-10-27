@@ -5,17 +5,17 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 {
     #region Properties
     /// <summary>
-    /// Accesor for restaurant tables on database
+    /// Database Accesor for restaurant tables
     /// </summary>
     public DbSet<RestaurantTable> Tables { get; set; }
 
     /// <summary>
-    /// Accesor for employees on database
+    /// Database accesor for employees
     /// </summary>
     public DbSet<Employee> Employees { get; set; }
 
     /// <summary>
-    /// Accesor for system status on database
+    /// Database accesor for status catalog
     /// </summary>
     public DbSet<Status> Status { get; set; }
     #endregion
@@ -23,7 +23,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     /// <inheritdoc/>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(EmployeeBuilder).Assembly);
 
         base.OnModelCreating(modelBuilder);
     }
