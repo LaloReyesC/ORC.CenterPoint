@@ -7,6 +7,7 @@ global using ORC.CenterPoint.API.Application;
 global using ORC.CenterPoint.API.Application.Configurations;
 global using ORC.CenterPoint.API.Application.Features.TableOperations.Commands;
 global using ORC.CenterPoint.API.Application.Features.TableOperations.Queries;
+global using ORC.CenterPoint.API.Core.Common;
 global using ORC.CenterPoint.API.Infraestructure;
 global using ORC.CenterPoint.API.Models;
 global using ORC.CenterPoint.API.Models.Dtos;

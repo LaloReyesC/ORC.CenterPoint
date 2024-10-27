@@ -29,5 +29,13 @@ public class StatusBuilder
             .Property(p => p.RegistrationDate)
             .HasDefaultValueSql("GETDATE()")
             .IsRequired();
+
+        builder.HasData(
+            StatusConstants.Active,
+            StatusConstants.Disabled,
+            StatusConstants.Leave,
+            StatusConstants.Rejoin,
+            StatusConstants.Vacations,
+            StatusConstants.Deleted);
     }
 }
