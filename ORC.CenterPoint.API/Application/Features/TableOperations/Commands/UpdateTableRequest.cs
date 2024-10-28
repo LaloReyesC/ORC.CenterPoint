@@ -1,6 +1,7 @@
 ﻿namespace ORC.CenterPoint.API.Application.Features.TableOperations.Commands;
 
-public class UpdateTableRequest : IRequest<UpdateTableResponse>
+public class UpdateTableRequest
+    : IRequest<UpdateTableResponse>
 {
     #region Properties
     [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
