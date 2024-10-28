@@ -12,11 +12,46 @@ public class StatusConstants
     #endregion
 
     #region Properties
-    public static Status Active => new() { Id = ActiveId, Name = "Activo", RegistrationDate = DateTime.Now };
-    public static Status Disabled => new() { Id = DisabledId, Name = "Deshabilitado", RegistrationDate = DateTime.Now };
-    public static Status Leave => new() { Id = LeaveId, Name = "Baja", RegistrationDate = DateTime.Now };
-    public static Status Rejoin => new() { Id = RejoinId, Name = "Reincorporado", RegistrationDate = DateTime.Now };
-    public static Status Vacations => new() { Id = VacationsId, Name = "De vacaciones", RegistrationDate = DateTime.Now };
-    public static Status Deleted => new() { Id = DeletedId, Name = "Eliminado", RegistrationDate = DateTime.Now };
+    public static Status Active => new()
+    {
+        Id = ActiveId,
+        Name = "Activo",
+        RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7041)
+    };
+
+    public static Status Disabled => new()
+    {
+        Id = DisabledId,
+        Name = "Deshabilitado",
+        RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7053)
+    };
+
+    public static Status Leave => new()
+    {
+        Id = LeaveId,
+        Name = "Baja",
+        RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7055)
+    };
+
+    public static Status Rejoin => new()
+    {
+        Id = RejoinId,
+        Name = "Reincorporado",
+        RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7056)
+    };
+
+    public static Status Vacations => new()
+    {
+        Id = VacationsId,
+        Name = "De vacaciones",
+        RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7057)
+    };
+
+    public static Status Deleted => new()
+    {
+        Id = DeletedId,
+        Name = "Eliminado",
+        RegistrationDate = new DateTime(2024, 10, 27, 1, 35, 32, 953, DateTimeKind.Local).AddTicks(7058)
+    };
     #endregion
 }

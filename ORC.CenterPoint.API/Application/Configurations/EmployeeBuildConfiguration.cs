@@ -1,6 +1,6 @@
 ﻿namespace ORC.CenterPoint.API.Application.Configurations;
 
-public class EmployeeBuilder
+public class EmployeeBuildConfiguration
     : IEntityTypeConfiguration<Employee>
 {
     public void Configure(EntityTypeBuilder<Employee> builder)

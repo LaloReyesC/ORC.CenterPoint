@@ -23,7 +23,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     /// <inheritdoc/>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(EmployeeBuilder).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(EmployeeBuildConfiguration).Assembly);
 
         base.OnModelCreating(modelBuilder);
     }

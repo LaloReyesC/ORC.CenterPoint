@@ -1,6 +1,6 @@
 ﻿namespace ORC.CenterPoint.API.Application.Configurations;
 
-public class StatusBuilder
+public class StatusBuildConfiguration
     : IEntityTypeConfiguration<Status>
 {
     public void Configure(EntityTypeBuilder<Status> builder)
