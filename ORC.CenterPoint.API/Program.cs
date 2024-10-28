@@ -17,7 +17,7 @@ OpenApiInfo info = new()
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options => 
+builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", info);
 
@@ -30,7 +30,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     string connectionString = builder.Configuration.GetConnectionString("SqlConnection")!;
 
-    options.UseSqlServer(connectionString);
+    options.UseSqlServer(connectionString, options =>
+    {
+        options.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+    });
 });
 builder.Services.AddMediatR(config =>
 {

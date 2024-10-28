@@ -6,11 +6,11 @@ public class TableRoute
     public override void Map(WebApplication app)
     {
         app.MapGroup(this)
-            .MapGet(Get)
-            .MapGet(Find, "{id}")
-            .MapPost(Post)
-            .MapPut(Put, "{id}")
-            .MapDelete(Delete, "{id}");
+           .MapGet(Get)
+           .MapGet(Find, "{id}")
+           .MapPost(Post)
+           .MapPut(Put, "{id}")
+           .MapDelete(Delete, "{id}");
     }
 
     /// <summary>
