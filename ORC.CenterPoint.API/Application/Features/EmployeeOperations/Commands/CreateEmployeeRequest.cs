@@ -5,6 +5,12 @@ public class CreateEmployeeRequest
 {
     #region Properties
     /// <summary>
+    /// Employee position Identifier
+    /// </summary>
+    /// <example>Chef</example>
+    public short PositionId { get; set; }
+
+    /// <summary>
     /// Contains employee name
     /// </summary>
     public required string Name { get; set; }
@@ -18,6 +24,11 @@ public class CreateEmployeeRequest
     /// Optional: Contains employee maternal surname
     /// </summary>
     public string? MaternalSurname { get; set; }
+
+    /// <summary>
+    /// Readonly property: Contains employee full name
+    /// </summary>
+    public string FullName => $"{Name.Trim()} {LastName.Trim()} {MaternalSurname?.Trim()}";
 
     /// <summary>
     /// Contains employee born date

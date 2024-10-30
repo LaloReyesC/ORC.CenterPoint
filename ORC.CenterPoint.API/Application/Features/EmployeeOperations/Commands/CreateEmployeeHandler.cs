@@ -21,11 +21,11 @@ public class CreateEmployeeHandler(ApplicationDbContext dbContext)
             return CreateEmployeeResponse.AlreadyExists(request);
         }
 
-        Employee table = request.Adapt<Employee>();
+        Employee employee = request.Adapt<Employee>();
 
-        table.StatusId = StatusConstants.ActiveId;
+        employee.StatusId = StatusConstants.ActiveId;
 
-        await _dbContext.Employees.AddAsync(table, cancellationToken);
+        await _dbContext.Employees.AddAsync(employee, cancellationToken);
 
         int affectedRows = await _dbContext.SaveChangesAsync(cancellationToken);
         bool created = affectedRows > 0;
@@ -33,7 +33,7 @@ public class CreateEmployeeHandler(ApplicationDbContext dbContext)
         CreateEmployeeResponse response = new()
         {
             Created = created,
-            Id = table.Id,
+            Id = employee.Id,
             Message = created ?
                 $"Se registró el empleado '{request.Name} {request.LastName} {request.MaternalSurname}'" :
                 "Empleado no registrada",

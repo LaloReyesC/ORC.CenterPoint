@@ -14,6 +14,17 @@ public class Employee
     public short StatusId { get; set; }
 
     /// <summary>
+    /// Contains employee position
+    /// </summary>
+    /// <example>Chef, Teacher, Fireman</example>
+    public required short PositionId { get; set; }
+
+    /// <summary>
+    /// Contains employee number
+    /// </summary>
+    public required string Number { get; set; }
+
+    /// <summary>
     /// Contains employee name
     /// </summary>
     public required string Name { get; set; }
@@ -24,10 +35,15 @@ public class Employee
     public required string LastName { get; set; }
 
     /// <summary>
+    /// Contains employee full name
+    /// </summary>
+    public required string FullName { get; set; }
+
+    /// <summary>
     /// Optional: Contains employee maternal surname
     /// </summary>
     public string? MaternalSurname { get; set; }
-    
+
     /// <summary>
     /// Contains employee born date
     /// </summary>
@@ -42,5 +58,10 @@ public class Employee
     /// Navigational property for status detail
     /// </summary>
     public required Status Status { get; set; }
+
+    /// <summary>
+    /// Navigational property: Contains employee position details
+    /// </summary>
+    public required EmployeePosition Position { get; set; }
     #endregion
 }
