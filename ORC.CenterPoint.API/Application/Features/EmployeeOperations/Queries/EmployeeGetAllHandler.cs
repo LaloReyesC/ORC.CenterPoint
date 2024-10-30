@@ -21,20 +21,7 @@ public class EmployeeGetAllHandler(ApplicationDbContext dbContext)
 
         List<Employee> employees = await query.ToListAsync(cancellationToken);
 
-        IEnumerable<EmployeeDto> employeesResponse = employees.Select(employee => new EmployeeDto()
-        {
-            BornDate = employee.BornDate,
-            EmployeeId = employee.Id,
-            LastName = employee.LastName,
-            MaternalSurname = employee.MaternalSurname,
-            Name = employee.Name,
-            EmployeeRegistrationDate = employee.RegistrationDate,
-            StatusId = employee.StatusId,
-            StatusName = employee.Status.Name,
-            StatusRegistrationDate = employee.Status.RegistrationDate,
-        });
-
-        return new EmployeeGetAllResponse() { Employees = employeesResponse.ToList() };
+        return new EmployeeGetAllResponse() { Employees = employees.Adapt<List<EmployeeDto>>() };
     }
 
     #region Private members

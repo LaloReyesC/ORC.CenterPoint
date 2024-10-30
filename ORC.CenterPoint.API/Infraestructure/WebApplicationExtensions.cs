@@ -36,7 +36,7 @@ public static class WebApplicationExtensions
     {
         builder
             .MapGet(pattern, handler)
-            .WithName(handler);
+            .WithName(handler.Method.Name);
 
         return builder;
     }
@@ -45,7 +45,7 @@ public static class WebApplicationExtensions
     {
         builder
             .MapPost(pattern, handler)
-            .WithName(handler);
+            .WithName(handler.Method.Name);
 
         return builder;
     }
@@ -54,7 +54,7 @@ public static class WebApplicationExtensions
     {
         builder
             .MapPut(pattern, handler)
-            .WithName(handler);
+            .WithName(handler.Method.Name);
 
         return builder;
     }
@@ -63,7 +63,7 @@ public static class WebApplicationExtensions
     {
         builder
             .MapPatch(pattern, handler)
-            .WithName(handler);
+            .WithName(handler.Method.Name);
 
         return builder;
     }
@@ -72,16 +72,8 @@ public static class WebApplicationExtensions
     {
         builder
             .MapDelete(pattern, handler)
-            .WithName(handler);
+            .WithName(handler.Method.Name);
 
         return builder;
-    }
-
-    public static IEndpointConventionBuilder WithName(this IEndpointConventionBuilder builder, Delegate handler)
-    {
-        string baseName = handler.Target?.GetType().Name?.Replace("Route", "") ?? "";
-
-        return builder
-            .WithName($"{baseName}-{handler.Method.Name}");
     }
 }

@@ -1,5 +1,3 @@
-using Microsoft.OpenApi.Models;
-
 var builder = WebApplication.CreateBuilder(args);
 
 OpenApiInfo info = new()
@@ -39,6 +37,8 @@ builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
 });
+
+builder.Services.AddMapsterBuilder();
 
 var app = builder.Build();
 

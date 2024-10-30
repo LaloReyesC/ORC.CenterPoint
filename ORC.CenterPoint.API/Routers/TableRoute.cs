@@ -6,11 +6,11 @@ public class TableRoute
     public override void Map(WebApplication app)
     {
         app.MapGroup(this)
-           .MapGet(Get)
-           .MapGet(Find, "{id}")
-           .MapPost(Post)
-           .MapPut(Put, "{id}")
-           .MapDelete(Delete, "{id}");
+           .MapGet(GetTables)
+           .MapGet(FindTableById, "{id}")
+           .MapPost(CreateTable)
+           .MapPut(UpdateTable, "{id}")
+           .MapDelete(DeleteTable, "{id}");
     }
 
     /// <summary>
@@ -25,7 +25,7 @@ public class TableRoute
     /// </remarks>
     [ProducesResponseType(typeof(TableGetAllResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(TableGetAllResponse), StatusCodes.Status404NotFound)]
-    public async Task<IResult> Get(IMediator mediator, [AsParameters] TableGetAllRequest request)
+    public async Task<IResult> GetTables(IMediator mediator, [AsParameters] TableGetAllRequest request)
     {
         TableGetAllResponse response = await mediator.Send(request);
 
@@ -45,7 +45,7 @@ public class TableRoute
     /// <remarks>Search a table by identifier, if table is founded return all table information, otherwise doesn't return anything</remarks>
     [ProducesResponseType(typeof(FindTableByIdResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(FindTableByIdResponse), StatusCodes.Status404NotFound)]
-    public async Task<IResult> Find(IMediator mediator, int id)
+    public async Task<IResult> FindTableById(IMediator mediator, int id)
     {
         FindTableByIdRequest request = new(id);
         FindTableByIdResponse response = await mediator.Send(request);
@@ -66,12 +66,12 @@ public class TableRoute
     /// </remarks>
     [ProducesResponseType(typeof(CreateTableResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(CreateTableResponse), StatusCodes.Status400BadRequest)]
-    public async Task<IResult> Post(IMediator mediator, CreateTableRequest request)
+    public async Task<IResult> CreateTable(IMediator mediator, CreateTableRequest request)
     {
         CreateTableResponse response = await mediator.Send(request);
 
         return response.Created ?
-            Results.CreatedAtRoute(nameof(Find), new { id = response.Id }, response) :
+            Results.CreatedAtRoute(nameof(FindTableById), new { id = response.Id }, response) :
             Results.BadRequest(response);
     }
 
@@ -90,7 +90,7 @@ public class TableRoute
     /// </remarks>
     [ProducesResponseType(typeof(UpdateTableResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(UpdateTableResponse), StatusCodes.Status400BadRequest)]
-    public async Task<IResult> Put(IMediator mediator, int id, UpdateTableRequest request)
+    public async Task<IResult> UpdateTable(IMediator mediator, int id, UpdateTableRequest request)
     {
         request.Id = id;
 
@@ -112,7 +112,7 @@ public class TableRoute
     /// </remarks>
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(DeleteTableResponse), StatusCodes.Status400BadRequest)]
-    public async Task<IResult> Delete(IMediator mediator, int id)
+    public async Task<IResult> DeleteTable(IMediator mediator, int id)
     {
         DeleteTableRequest request = new(id);
         DeleteTableResponse response = await mediator.Send(request);
