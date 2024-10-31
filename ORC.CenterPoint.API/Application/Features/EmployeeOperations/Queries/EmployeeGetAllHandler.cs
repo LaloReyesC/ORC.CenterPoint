@@ -12,7 +12,8 @@ public class EmployeeGetAllHandler(ApplicationDbContext dbContext)
         IQueryable<Employee> query = _dbContext.Employees
             .AsNoTracking()
             .OrderByDescending(e => e.Id)
-            .Include(p => p.Status);
+            .Include(p => p.Status)
+            .Include(p => p.Position);
 
         query = QueryFilter(query, request);
         query = query

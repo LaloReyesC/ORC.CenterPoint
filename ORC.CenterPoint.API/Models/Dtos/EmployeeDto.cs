@@ -9,14 +9,9 @@ public class EmployeeDto
     public int EmployeeId { get; set; }
 
     /// <summary>
-    /// Contains employee status identifier
+    /// Contains employee number identifier
     /// </summary>
-    public short StatusId { get; set; }
-
-    /// <summary>
-    /// Readonly property: Contains employee full name
-    /// </summary>
-    public string FullName => $"{Name} {LastName} {MaternalSurname}";
+    public required string EmployeeNumber { get; set; }
 
     /// <summary>
     /// Contains employee name
@@ -34,6 +29,11 @@ public class EmployeeDto
     public string? MaternalSurname { get; set; }
 
     /// <summary>
+    /// Contains employee full name
+    /// </summary>
+    public required string FullName { get; set; }
+
+    /// <summary>
     /// Contains employee born date
     /// </summary>
     public DateTime BornDate { get; set; }
@@ -44,13 +44,23 @@ public class EmployeeDto
     public DateTime EmployeeRegistrationDate { get; set; }
 
     /// <summary>
+    /// Contains employee status identifier
+    /// </summary>
+    public short StatusId { get; set; }
+
+    /// <summary>
     /// Contains status name
     /// </summary>
     public required string StatusName { get; set; }
 
     /// <summary>
-    /// Entry registration date
+    /// Contains employee position identifier
     /// </summary>
-    public DateTime StatusRegistrationDate { get; set; }
+    public short PositionId { get; set; }
+
+    /// <summary>
+    /// Contains employee position
+    /// </summary>
+    public required string PositionName { get; set; }
     #endregion
 }

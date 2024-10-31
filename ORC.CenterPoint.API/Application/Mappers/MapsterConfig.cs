@@ -15,13 +15,16 @@ public static class MapsterConfig
         #region Employee -> EmployeeDto
         TypeAdapterConfig<Employee, EmployeeDto>.NewConfig()
             .Map(dest => dest.EmployeeId, src => src.Id)
+            .Map(dest => dest.EmployeeNumber, src => src.Number)
             .Map(dest => dest.EmployeeRegistrationDate, src => src.RegistrationDate)
             .Map(dest => dest.StatusName, src => src.Status.Name)
-            .Map(dest => dest.StatusRegistrationDate, src => src.Status.RegistrationDate);
+            .Map(dest => dest.PositionName, src => src.Position.Name);
         #endregion
 
+        #region CreateEmployeeRequest -> Employee
         TypeAdapterConfig<CreateEmployeeRequest, Employee>.NewConfig()
             .Map(dest => dest.Number, src => src.EmployeeNumber);
+        #endregion
 
         return services;
     }
