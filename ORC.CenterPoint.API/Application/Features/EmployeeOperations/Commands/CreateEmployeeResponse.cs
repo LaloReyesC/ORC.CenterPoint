@@ -12,10 +12,24 @@ public class CreateEmployeeResponse
     public static CreateEmployeeResponse New => new() { Message = string.Empty };
     #endregion
 
-    #region Private members
-    internal static CreateEmployeeResponse AlreadyExists(CreateEmployeeRequest request) => new()
+    #region Operators
+    public static implicit operator CreateEmployeeResponse(string message) => new()
     {
-        Message = $"El empleado '{request.Name} {request.LastName} {request.MaternalSurname}' ya se encuentra registrado",
+        Message = message,
+    };
+    #endregion
+
+    #region Private members
+    internal static CreateEmployeeResponse RecordCreated(Employee request) => new()
+    {
+        Created = true,
+        Id = request.Id,
+        Message = $"Se registró el empleado '{request.FullName}'",
+    };
+
+    internal static CreateEmployeeResponse NotCreated() => new()
+    {
+        Message = "Empleado no registrada",
     };
     #endregion
 }

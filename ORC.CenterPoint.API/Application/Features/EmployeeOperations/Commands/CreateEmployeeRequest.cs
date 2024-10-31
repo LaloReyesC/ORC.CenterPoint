@@ -28,7 +28,13 @@ public class CreateEmployeeRequest
     /// <summary>
     /// Readonly property: Contains employee full name
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
     public string FullName => $"{Name.Trim()} {LastName.Trim()} {MaternalSurname?.Trim()}";
+
+    /// <summary>
+    /// Contains employee number
+    /// </summary>
+    public required string EmployeeNumber { get; set; }
 
     /// <summary>
     /// Contains employee born date

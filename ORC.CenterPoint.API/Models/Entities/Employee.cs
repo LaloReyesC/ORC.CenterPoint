@@ -35,14 +35,14 @@ public class Employee
     public required string LastName { get; set; }
 
     /// <summary>
-    /// Contains employee full name
-    /// </summary>
-    public required string FullName { get; set; }
-
-    /// <summary>
     /// Optional: Contains employee maternal surname
     /// </summary>
     public string? MaternalSurname { get; set; }
+
+    /// <summary>
+    /// Contains employee full name
+    /// </summary>
+    public required string FullName { get; set; }
 
     /// <summary>
     /// Contains employee born date

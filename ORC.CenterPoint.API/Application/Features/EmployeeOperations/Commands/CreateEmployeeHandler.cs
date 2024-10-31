@@ -10,15 +10,19 @@ public class CreateEmployeeHandler(ApplicationDbContext dbContext)
     public async Task<CreateEmployeeResponse> Handle(CreateEmployeeRequest request, CancellationToken cancellationToken)
     {
         bool employeeAlreadyExists = await _dbContext.Employees.AsNoTracking()
-            .AnyAsync(table =>
-                table.Name == request.Name &&
-                table.LastName == request.LastName &&
-                table.MaternalSurname == request.MaternalSurname,
-            cancellationToken);
+            .AnyAsync(table => table.FullName == request.FullName, cancellationToken);
 
         if (employeeAlreadyExists)
         {
-            return CreateEmployeeResponse.AlreadyExists(request);
+            return $"El empleado '{request.FullName}' ya se encuentra registrado";
+        }
+
+        employeeAlreadyExists = await _dbContext.Employees.AsNoTracking()
+            .AnyAsync(table => table.Number == request.EmployeeNumber, cancellationToken);
+
+        if (employeeAlreadyExists)
+        {
+            return $"Un empleado con el número '{request.EmployeeNumber}' ya se encuentra registrado";
         }
 
         Employee employee = request.Adapt<Employee>();
@@ -30,15 +34,8 @@ public class CreateEmployeeHandler(ApplicationDbContext dbContext)
         int affectedRows = await _dbContext.SaveChangesAsync(cancellationToken);
         bool created = affectedRows > 0;
 
-        CreateEmployeeResponse response = new()
-        {
-            Created = created,
-            Id = employee.Id,
-            Message = created ?
-                $"Se registró el empleado '{request.Name} {request.LastName} {request.MaternalSurname}'" :
-                "Empleado no registrada",
-        };
-
-        return response;
+        return created ?
+            CreateEmployeeResponse.RecordCreated(employee) :
+            CreateEmployeeResponse.NotCreated();
     }
 }

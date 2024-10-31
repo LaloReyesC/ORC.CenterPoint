@@ -9,6 +9,6 @@ public class EmployeePosition
 
     public DateTime RegistrationDate { get; set; }
 
-    public required IEnumerable<Employee> Employees { get; set; }
+    public IList<Employee> Employees { get; set; } = [];
     #endregion
 }

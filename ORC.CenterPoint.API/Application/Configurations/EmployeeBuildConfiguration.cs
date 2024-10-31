@@ -23,6 +23,19 @@ public class EmployeeBuildConfiguration
             .OnDelete(DeleteBehavior.ClientNoAction);
 
         builder
+            .HasOne(p => p.Position)
+            .WithMany(p => p.Employees)
+            .HasForeignKey(p => p.PositionId)
+            .HasConstraintName("FK_Employee_PositionId")
+            .IsRequired()
+            .OnDelete(DeleteBehavior.ClientNoAction);
+
+        builder
+            .Property(p => p.Number)
+            .HasMaxLength(10)
+            .IsRequired();
+
+        builder
             .Property(p => p.Name)
             .HasMaxLength(150)
             .IsRequired();
@@ -35,6 +48,12 @@ public class EmployeeBuildConfiguration
         builder
             .Property(p => p.MaternalSurname)
             .HasMaxLength(50);
+
+        builder
+            .Property(p => p.FullName)
+            .HasComputedColumnSql($"[Name] + ' ' + [LastName] + ' ' + [MaternalSurname]")
+            .HasMaxLength(200)
+            .IsRequired();
 
         builder
             .Property(p => p.BornDate)
