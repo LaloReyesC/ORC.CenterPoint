@@ -25,6 +25,14 @@ public class CreateEmployeeHandler(ApplicationDbContext dbContext)
             return $"Un empleado con el número '{request.EmployeeNumber}' ya se encuentra registrado";
         }
 
+        employeeAlreadyExists = await _dbContext.EmployeePositions.AsNoTracking()
+            .AnyAsync(table => table.Id == request.PositionId, cancellationToken);
+
+        if (!employeeAlreadyExists)
+        {
+            return $"El puesto seleccionado para el empleado es inválido";
+        }
+
         Employee employee = request.Adapt<Employee>();
 
         employee.StatusId = StatusConstants.ActiveId;

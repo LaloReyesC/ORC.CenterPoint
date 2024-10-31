@@ -15,6 +15,11 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Employee> Employees { get; set; }
 
     /// <summary>
+    /// Database accesor for employee positions
+    /// </summary>
+    public DbSet<EmployeePosition> EmployeePositions { get; set; }
+
+    /// <summary>
     /// Database accesor for status catalog
     /// </summary>
     public DbSet<Status> Status { get; set; }

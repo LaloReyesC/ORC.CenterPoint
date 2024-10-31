@@ -20,6 +20,9 @@ public static class MapsterConfig
             .Map(dest => dest.StatusRegistrationDate, src => src.Status.RegistrationDate);
         #endregion
 
+        TypeAdapterConfig<CreateEmployeeRequest, Employee>.NewConfig()
+            .Map(dest => dest.Number, src => src.EmployeeNumber);
+
         return services;
     }
 }
