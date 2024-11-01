@@ -1,6 +1,7 @@
 ﻿namespace ORC.CenterPoint.API.Application.Features.TableOperations.Queries;
 
-public class TableGetAllHandler(ApplicationDbContext dbContext) : IRequestHandler<TableGetAllRequest, TableGetAllResponse>
+public class TableGetAllHandler(ApplicationDbContext dbContext)
+    : IRequestHandler<TableGetAllRequest, TableGetAllResponse>
 {
     #region Fields
     private readonly ApplicationDbContext _dbContext = dbContext;

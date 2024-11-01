@@ -11,9 +11,8 @@ public class FindTableByIdHandler(ApplicationDbContext dbContext) : IRequestHand
         IQueryable<RestaurantTable> tablesQuery = _dbContext.Tables.AsNoTracking();
 
         RestaurantTable? table = await tablesQuery.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+        TableDto? tableDto = table?.Adapt<TableDto>();
 
-        FindTableByIdResponse response = new() { Table = table };
-
-        return response;
+        return new() { Table = table };
     }
 }
