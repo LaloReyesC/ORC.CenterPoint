@@ -26,6 +26,12 @@ public static class MapsterConfig
             .Map(dest => dest.Number, src => src.EmployeeNumber);
         #endregion
 
+        #region PaginationRequestBase -> PaginationResponseBase
+        TypeAdapterConfig<PaginationRequestBase, PaginationResponseBase>.NewConfig()
+            .Map(dest => dest.CurrentPage, src => src.DesiredPage)
+            .Map(dest => dest.PageItemsNumber, src => src.RowsPerPage);
+        #endregion
+
         return services;
     }
 }

@@ -29,11 +29,7 @@ public class TableRoute
     {
         TableGetAllResponse response = await mediator.Send(request);
 
-        bool existsTables = response.Tables.Count > 0;
-
-        return existsTables ?
-            Results.Ok(response) :
-            Results.NotFound(response);
+        return SetResponse(response);
     }
 
     /// <summary>
