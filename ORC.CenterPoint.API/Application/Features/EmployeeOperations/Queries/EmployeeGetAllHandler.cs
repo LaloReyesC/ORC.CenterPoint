@@ -22,7 +22,7 @@ public class EmployeeGetAllHandler(ApplicationDbContext dbContext)
 
         List<Employee> employees = await query.ToListAsync(cancellationToken);
 
-        return new EmployeeGetAllResponse() { Employees = employees.Adapt<List<EmployeeDto>>() };
+        return new EmployeeGetAllResponse() { Items = employees.Adapt<List<EmployeeDto>>() };
     }
 
     #region Private members

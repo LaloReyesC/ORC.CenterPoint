@@ -1,6 +1,7 @@
 ﻿namespace ORC.CenterPoint.API.Application.Features.Common.Commands;
 
 public class OperationResponse<T>
+    : IResponse
 {
     #region Properties
     /// <summary>

@@ -7,6 +7,7 @@ global using Microsoft.IdentityModel.Tokens;
 global using Microsoft.OpenApi.Models;
 global using ORC.CenterPoint.API.Application;
 global using ORC.CenterPoint.API.Application.Configurations;
+global using ORC.CenterPoint.API.Application.Features.Common.Commands;
 global using ORC.CenterPoint.API.Application.Features.Common.Queries;
 global using ORC.CenterPoint.API.Application.Features.EmployeeOperations.Commands;
 global using ORC.CenterPoint.API.Application.Features.EmployeeOperations.Queries;

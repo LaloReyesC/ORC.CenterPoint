@@ -17,9 +17,7 @@ public class EmployeeRoute
     {
         EmployeeGetAllResponse response = await mediator.Send(request);
 
-        return response.Employees.Any() ?
-            Results.Ok(response) :
-            Results.NotFound(response);
+        return SetResponse(response);
     }
 
     [ProducesResponseType(typeof(FindEmployeeByIdResponse), StatusCodes.Status200OK)]
@@ -27,12 +25,9 @@ public class EmployeeRoute
     public async Task<IResult> FindEmployeeById(IMediator mediator, int id)
     {
         FindEmployeeByIdRequest request = new(id);
-
         FindEmployeeByIdResponse response = await mediator.Send(request);
 
-        return response.Record is not null ?
-            Results.Ok(response) :
-            Results.NotFound(response);
+        return SetResponse(response);
     }
 
     [ProducesResponseType(typeof(CreateEmployeeResponse), StatusCodes.Status201Created)]
@@ -41,8 +36,6 @@ public class EmployeeRoute
     {
         CreateEmployeeResponse response = await mediator.Send(request);
 
-        return response.Created ?
-            Results.CreatedAtRoute(nameof(FindEmployeeById), new { id = response.Id }, response) :
-            Results.BadRequest(response);
+        return SetResponse(response, FindEmployeeById, new { id = response.Id });
     }
 }

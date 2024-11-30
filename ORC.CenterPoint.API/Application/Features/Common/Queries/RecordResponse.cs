@@ -1,6 +1,6 @@
 ﻿namespace ORC.CenterPoint.API.Application.Features.Common.Queries;
 
-public class RecordResponse<T>
+public class RecordResponse<T> : IResponse
     where T : class
 {
     #region Properties

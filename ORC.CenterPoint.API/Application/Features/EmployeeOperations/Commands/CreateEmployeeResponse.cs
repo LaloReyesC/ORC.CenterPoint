@@ -1,15 +1,11 @@
 ﻿namespace ORC.CenterPoint.API.Application.Features.EmployeeOperations.Commands;
 
-public class CreateEmployeeResponse
+public class CreateEmployeeResponse : OperationResponse<bool>
 {
     #region Properties
-    public bool Created { get; set; }
-
     public required string Message { get; set; }
 
     public int Id { get; set; }
-
-    public static CreateEmployeeResponse New => new() { Message = string.Empty };
     #endregion
 
     #region Operators
@@ -22,7 +18,7 @@ public class CreateEmployeeResponse
     #region Private members
     internal static CreateEmployeeResponse RecordCreated(Employee request) => new()
     {
-        Created = true,
+        Data = true,
         Id = request.Id,
         Message = $"Se registró el empleado '{request.FullName}'",
     };
